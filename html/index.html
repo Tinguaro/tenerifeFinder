@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<link rel="stylesheet" href="../css/metro-bootstrap.css">
+		<link rel="stylesheet" href="../css/mio.css">
+		<link rel="stylesheet" href="../css/jquery.mobile-1.3.2.css">
+		
+        <script src="../libs/jquery.js"></script>
+		<script src="../libs/jquery.mobile-1.3.2.js"></script>
+		<script src="../libs/metro.min.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false" type="text/javascript"></script>
+		<script src="../js/index.js"></script>
+		
+		<script>
+			$(function() {
+				//$("#accordion").accordion();
+				//$("#navigation").navigation();
+			});
+		</script>
+    </head>
+    <body class="metro">
+		
+		<!-- PÁGINA DE INICIO -->
+		<div data-role="page" id="page1" data-theme="a" data-transition="flip" style="background:#0050f5;">
+			<nav class="navigation-bar  bg-darkCobalt fixed-top">
+				<nav class="navigation-bar-header">
+					<h3 class="text-center fg-white">Tenerife <i class="icon-search"></i> Finder</h3>
+				</nav>
+			</nav>
+		    <div><img id="icono" style="position:absolute; left:35%; top:10%; width:30%; height: 60%" src="TenerifeIcono.png"></div> 
+			<p id="nuser">Usuario: </p>
+			<div  id="user">
+				<input type="text" value="" placeholder="Usuario..."/>
+			</div>
+			<p id="npassword">Password: </p>
+			<div id="password">
+				<input type="password" value="" placeholder=""/>
+			</div>
+		        <a data-role="button" data-inline="true" id="botonInicio" href="#page2" data-transition="flip">
+		            Entrar
+		        </a>
+		    </div>
+		</div>
+		
+		
+		<div data-role="page"  id="page2" data-transition="flip"  style="background:#0050f5;">
+		<nav class="navigation-bar  bg-darkCobalt fixed-top">
+				
+				<nav class="navigation-bar-header">
+					<h3 class="text-center fg-white">Tenerife <i class="icon-search"></i> Finder</h3>
+				</nav>
+				
+				<nav class="navigation-bar-content">
+					<div class="grid">
+						<div class="row">
+							<div class="span5">
+							</div>		
+							<div class="span3">
+								<a class="button bg-darkTeal bd-dark fg-white" href="#">Beber</a>
+							</div>
+							<div class="span3">
+								<a class="button bg-darkTeal bd-dark fg-white" href="#">Comer</a>
+							</div>
+							<div class="span">
+								<a class="button bg-darkTeal bd-dark fg-white" href="#" onclick="initialize();">Noche</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+				
+			</nav>
+			<!--> Asistente virtual(Modelo 3D)<!-->
+			<div id="asistente"></div>
+			<!--> Mapa GoogleMaps<!-->
+			<div id="mapa"></div>
+		</div>
+		
+    </body>
+</html>
