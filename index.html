@@ -13,6 +13,7 @@
         <script type="text/javascript" src="js/insertarBDDValoracion.js"></script>
 		<script type="text/javascript" src="js/insertarBDDComentario.js"></script>
 		<script type="text/javascript" src="js/peticionBDDLogin.js"></script>
+		<script type="text/javascript" src="js/registro.js"></script>
 		
 		<script src="js/index.js"></script>
 		
@@ -23,7 +24,7 @@
 			});
 		</script>
     </head>
-    <body class="metro" style="background:#4383C7;">
+    <body class="metro" style="background:#4383C7;" onload="initialize();">
 		
 		<!-- PÁGINA DE INICIO -->
 		<div data-role="page" id="page1" style="background:#4383C7;">
@@ -34,7 +35,7 @@
 					<a class="element fg-white" href="#page2" data-transition="flip">Tenerife <i class="icon-search"></i> Finder</a>
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
-					<a class="element place-right fg-white" href="#" data-transition="flip">Registro <span class="icon-pencil"></span></a>
+					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
 					<div class="element place-right">
 						<a class="dropdown-toggle">Iniciar <span class="icon-user"></span></a>
 						<div class="dropdown-menu place-right bg-darkCobalt bd-darkCobalt" data-role="dropdown">
@@ -60,7 +61,7 @@
 					<a class="element fg-white" href="#page2" data-transition="flip">Tenerife <i class="icon-search"></i> Finder</a>
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
-					<a class="element place-right fg-white" href="#" data-transition="flip">Registro <span class="icon-pencil"></span></a>
+					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
 					<div class="element place-right">
 						<a class="dropdown-toggle">Iniciar <span class="icon-user"></span></a>
 						<div class="dropdown-menu place-right bg-darkCobalt bd-darkCobalt" data-role="dropdown">
@@ -83,7 +84,11 @@
 			</ul>
 			</nav>
 			<!--> Asistente virtual(Modelo 3D)<!-->
-			<div id="asistente"></div>
+			<!--AC_VHost_Embed(24099,225,300,'',1,1,1981618, 0,1,0,'11bebad4b711e622f9a1e8661392b93a',9);
+			<object id="asistente" type="application/x-shockwave-flash" id="VHSS" data="http://content.oddcast.com/vhss/vhss_v5.swf?doc=http%3A%2F%2Fvhss-d.oddcast.com%2Fphp%2FplayScene%2Facc%3D24099%2Fss%3D1981618%2Fsl%3D0&acc=24099&bgcolor=0x&pageDomain=www.asistentesvirtuales.com&lc_name=1388037164&fv=9&is_ie=0&emb=8&embedid=11bebad4b711e622f9a1e8661392b93a" width="300" height="225"><param name="scale" value="noborder"><param name="bgcolor" value=""><param name="quality" value="high"><param name="name" value="VHSS"><param name="allowscriptaccess" value="always"><param name="swliveconnect" value="true"><param name="wmode" value="transparent"></object-->
+			
+			AC_VHost_Embed(24099,225,300,'',1,1, 1982106, 0,1,0,'fb509f751966d0c03d5a89b0a0bb37b7',9);
+			<object id="asistente" type="application/x-shockwave-flash" id="VHSS" data="http://content.oddcast.com/vhss/vhss_v5.swf?doc=http%3A%2F%2Fvhss-d.oddcast.com%2Fphp%2FplayScene%2Facc%3D24099%2Fss%3D1982106%2Fsl%3D0&amp;acc=24099&amp;bgcolor=0x&amp;pageDomain=www.asistentesvirtuales.com&amp;lc_name=1388037164&amp;fv=9&amp;is_ie=0&amp;emb=8&amp;embedid=fb509f751966d0c03d5a89b0a0bb37b7" width="300" height="225"><param name="scale" value="noborder"><param name="bgcolor" value=""><param name="quality" value="high"><param name="name" value="VHSS"><param name="allowscriptaccess" value="always"><param name="swliveconnect" value="true"><param name="wmode" value="transparent"></object>
 			<!--> Mapa GoogleMaps<!-->
 			<div id="mapa"></div>
 		</div>
@@ -95,7 +100,7 @@
 					<a class="element fg-white" href="#page2" data-transition="flip">Tenerife <i class="icon-search"></i> Finder</a>
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
-					<a class="element place-right fg-white" href="#" data-transition="flip">Registro <span class="icon-pencil"></span></a>
+					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
 					<div class="element place-right">
 						<a class="dropdown-toggle">Iniciar <span class="icon-user"></span></a>
 						<div class="dropdown-menu place-right bg-darkCobalt bd-darkCobalt" data-role="dropdown">
@@ -110,6 +115,73 @@
 					<span class="element-divider place-right"></span>
 				</nav>
 			</nav>
+		</div>
+		
+		<div data-role="page" id="pageRegistro" style="background:#4383C7;">
+		
+			<!-- Barra de navegación de la cabecera de la aplicación -->
+			<nav class="navigation-bar  bg-darkCobalt fixed-top">
+				<nav class="navigation-bar-content">
+					<a class="element brand fg-white" href="#page1" data-transition="flip">Home <i class="icon-home"></i></a>
+					<a class="element fg-white" href="#page2" data-transition="flip">Tenerife <i class="icon-search"></i> Finder</a>
+					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
+					<span class="element-divider"></span>
+					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
+					<div class="element place-right">
+						<a class="dropdown-toggle">Iniciar <span class="icon-user"></span></a>
+						<div class="dropdown-menu place-right bg-darkCobalt bd-darkCobalt" data-role="dropdown">
+							<div class="input-control text span3 bg-darkCobalt fg-white bd-white">
+								<input type="text" value="" placeholder="usuario"/>
+							</div>
+							<div class="input-control password span3 bg-darkCobalt fg-white bd-white">
+								<input type="password" value="" placeholder="password"/>
+							</div>
+						</div>
+					</div>
+					<span class="element-divider place-right"></span>
+				</nav>
+			</nav>
+			<!-- FIN -- Barra de navegación de la cabecera de la aplicación -->
+			
+			<!-- FORMULARIO DE REGISTRO!!! -->
+			<div class="panel panel-primary" style="position: absolute; top: 10%; left: 2%; width:90%; height: 40%;">
+				
+				<div class="panel-heading">
+					<h style="font-size: 3em; position:absolute; left: 20%"> Formulario de Registro en la Aplicaci&oacuten </h>
+				</div>
+			
+				<div class="panel-body" style="position:absolute; top:35%">
+					<p style="font-size: 1em; color:white"> Nota: los campos con "*" son OBLIGATIRIOS </p>
+					<hr>
+					<form>
+						<label style="color: white"> Nombre: *</label>
+						<input id="regNombre" type="text" placeholder="Introduzca su nombre real"/>
+						
+						<label style="color: white"> 1er Apellido: *</label>
+						<input id="regApellido1" type="text" placeholder="Introduzca apellido (1er)"/>
+						
+						<label style="color: white"> 2ndo Apellido: </label>
+						<input id="regApellido2" type="text" placeholder="Introduzca apellido (2ndo)"/>
+						
+						<label style="color: white"> Nombre de Usuario: *</label>
+						<input id="regNombreUsuario" type="text" placeholder="Nombre de usuario"/>
+						
+						<label style="color: white"> Contrase&ntildea: *</label>
+						<input id="regPasswordUsuario" type="password"  placeholder="Password" />
+						
+						<label style="color: white"> Repita la contrase&ntildea: *</label>
+						<input id="regPasswordUsuarioVerificar" type="password"  placeholder="Password" />
+												
+						<input type="button" value="Enviar" data-inline="true" onclick="ejecutarRegistro ();"/>
+						<input type="reset" value="Limpiar" data-inline="true"/>						
+					</form>
+				</div>
+				<!-- FIN -- FORMULARIO DE REGISTRO!!! -->	
+				
+				<img src="TenerifeIcono.png" style="position:absolute; width: 40%; height: 110%; left: 50%; top: 60%"> </img>
+				
+			</div>
+			
 		</div>
     </body>
 </html>

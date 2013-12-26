@@ -7,10 +7,11 @@ var info = [];
 function initialize() {
 	latlng = new google.maps.LatLng(28.489665, -16.315926);
 	var mapOptions = {
-			zoom: 10,
+			zoom: 12,
 			center: latlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoomControl: true,
+
 	};
 	var mapaDiv = document.getElementById ('mapa');
 	mapaDiv.style.display = "block";
