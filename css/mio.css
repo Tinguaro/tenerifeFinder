@@ -2,53 +2,15 @@
 	background:#ffffff;
 	position:absolute;
 	left:10%;
-	top:30%;
-	width:30%;
-	height:55%;
+	top:45%;
+	width:20%;
+	height:45%;
 }
 #mapa{
 	background:#ffffff;
 	position:absolute;
-	left:50%;
+	left:32%;
 	top:30%;
-	width:40%;
-	height:55%;
+	width:58%;
+	height:60%;
 }
-
-#nuser{
-	position:absolute;
-	left:40%;
-	top:65%;
-	width:10%;
-	height:1%;
-}
-
-#user{
-	position:absolute;
-	left:40%;
-	top:68%;
-	width:13%;
-	height:5%;
-}
-
-#npassword{
-	position:absolute;
-	left:40%;
-	top:75%;
-	width:10%;
-	height:1%;
-}
-#password{
-	position:absolute;
-	left:40%;
-	top:78%;
-	width:13%;
-	height:5%;
-}
-
-#botonInicio{
-	position:absolute;
-	left:45%;
-	top:87%;
-}
- 
