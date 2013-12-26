@@ -1,4 +1,4 @@
-var ip = "http://192.168.43.97/proyectoII/";
+var ip = "http://10.159.0.55/proyectoII/";
 var nombreLocal = "";
 var latlng, map, infoWindow;
 var markersBeber = [], markersComer = [], markersNoche = [];
@@ -7,7 +7,7 @@ var info = [];
 function initialize() {
 	latlng = new google.maps.LatLng(28.489665, -16.315926);
 	var mapOptions = {
-			zoom: 20,
+			zoom: 10,
 			center: latlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoomControl: true,
@@ -121,22 +121,12 @@ function vibrar () {
 }
 
 function motrarAlertaBeber() {
-	navigator.notification.confirm (
-        'Quiere localizar sitios donde poder BEBER',   // mensaje
-        onConfirm,									   // callback
-        'TFinder: Beber',            				   // título de la alerta
-        ['Cancelar', 'Aceptar']                        // nombre del botón
-    );
+	alert("Has elegido la opción de beber");
 	peticionMarkers ("beber");
 }
 
 function motrarAlertaComer() {
-	navigator.notification.confirm (
-        'Quiere localizar sitios donde poder COMER',  // mensaje
-        onConfirm,									  // callback
-        'TFinder: Comer',            				  // título de la alerta
-        ['Cancelar', 'Aceptar']                 	  // nombre del botón
-    );
+	alert("Has elegido la opción de comer");
 	peticionMarkers ("comer");
 }
 

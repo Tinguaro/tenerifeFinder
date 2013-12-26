@@ -9,6 +9,11 @@
 		<script src="libs/jquery.mobile-1.3.2.js"></script>
 		<script src="libs/metro.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false" type="text/javascript"></script>
+		
+        <script type="text/javascript" src="js/insertarBDDValoracion.js"></script>
+		<script type="text/javascript" src="js/insertarBDDComentario.js"></script>
+		<script type="text/javascript" src="js/peticionBDDLogin.js"></script>
+		
 		<script src="js/index.js"></script>
 		
 		<script>
@@ -72,8 +77,8 @@
 			</nav>
 			<nav class="horizontal-menu fg-white" style="position:absolute; top:10%; left:35%;">
 			<ul>
-				<li><a style="color:#FFFFFF;" href="#">Beber</a></li>
-				<li><a style="color:#FFFFFF;" href="#">Comer</a></li>
+				<li><a style="color:#FFFFFF;" href="#" onclick="motrarAlertaBeber();">Beber</a></li>
+				<li><a style="color:#FFFFFF;" href="#" onclick="motrarAlertaComer();">Comer</a></li>
 				<li><a style="color:#FFFFFF;" href="#" onclick="initialize();">Noche</a></li>
 			</ul>
 			</nav>
