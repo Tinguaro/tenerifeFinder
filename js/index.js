@@ -5,10 +5,9 @@ var markersBeber = [], markersComer = [], markersNoche = [];
 var info = [];
 
 function initialize() {
-	if(navigator.geolocation)
-		navigator.geolocation.getCurrentPosition(anteElExito, anteElError);
+	latlng = new google.maps.LatLng(28.489665, -16.315926);
 	var mapOptions = {
-			zoom: 10,
+			zoom: 20,
 			center: latlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoomControl: true,
