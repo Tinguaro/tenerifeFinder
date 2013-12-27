@@ -39,7 +39,7 @@ function initialize() {
     //peticionMarkers ();
 	$("#textoAsistente").empty();
 	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Puedes buscar locales en tu zona</div>'));
-	console.log("Hola");
+
 }
 
 function irAPagina3() {
@@ -113,34 +113,24 @@ function anteElError(error) {
 
 
 /* *****************************************************************************************
- * 			Sensores, Notificaciones, ....
+ * 			Notificaciones, ....
  ******************************************************************************************/
 
-function playBeep() {
-	navigator.notification.beep(1);
-}
-
-function vibrar () {
-	navigator.notification.vibrate (500);
-}
-
-function motrarAlertaBeber() {
-	alert("Has elegido la opción de beber");
+function mostrarAlertaBeber() {
+	$("#textoAsistente").empty();
+	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido la opci&oacuten de Beber</div>'));
 	peticionMarkers ("beber");
 }
 
-function motrarAlertaComer() {
-	alert("Has elegido la opción de comer");
+function mostrarAlertaComer() {
+	$("#textoAsistente").empty();
+	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido la opci&oacuten de Comer</div>'));
 	peticionMarkers ("comer");
 }
 
-function motrarAlertaNoche() {
-	navigator.notification.confirm (
-        'Quiere localizar sitios donde poder salir a tomar algo o bailar (NOCHE)',  // mensaje
-        onConfirm,																	// callback
-        'TFinder: Noche',          													// título de la alerta
-        ['Cancelar', 'Aceptar']                										// nombre del botón
-    );
+function mostrarAlertaNoche() {
+	$("#textoAsistente").empty();
+	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido la opci&oacuten de Noche</div>'));
 	peticionMarkers ("noche");
 }
 
