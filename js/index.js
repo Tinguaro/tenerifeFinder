@@ -5,9 +5,10 @@ var markersBeber = [], markersComer = [], markersNoche = [];
 var info = [];
 
 function initialize() {
+		
 	latlng = new google.maps.LatLng(28.489665, -16.315926);
 	var mapOptions = {
-			zoom: 12,
+			zoom: 20,
 			center: latlng,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			zoomControl: true,
@@ -36,7 +37,9 @@ function initialize() {
     	infowindow.open(map, marker);
     });
     //peticionMarkers ();
-    
+	$("#textoAsistente").empty();
+	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Puedes buscar locales en tu zona</div>'));
+	console.log("Hola");
 }
 
 function irAPagina3() {
