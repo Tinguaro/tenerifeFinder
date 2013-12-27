@@ -16,23 +16,19 @@
 		<script type="text/javascript" src="js/registro.js"></script>
 		
 		<script src="js/index.js"></script>
-		
-		<script>
-			$(function() {
-				//$("#accordion").accordion();
-				//$("#navigation").navigation();
-			});
-		</script>
+	
+	
     </head>
     <body class="metro" style="background:#4383C7;" onload="initialize();">
 		
 		<!-- PÁGINA DE INICIO -->
 		<div data-role="page" id="page1" style="background:#4383C7;">
-			<nav class="navigation-bar bg-darkCobalt fixed-top">
+		<iframe src="http://translate.google.com/translate_tts?tl=es&q=Bienvenido+a+tenerife+faynder" style="display: none"></iframe>
+			<nav class="navigation-bar  bg-darkCobalt fixed-top">
 				<nav class="navigation-bar-content">
 					<span class="element-divider"></span>
 					<a class="element brand fg-white" href="#page1" data-transition="flip">Home <i class="icon-home"></i></a>
-					<a class="element fg-white" href="#page2" data-transition="flip" onclick="initialize();>Tenerife <i class="icon-search"></i> Finder</a>
+					<a class="element fg-white" href="#page2" data-transition="flip" onload="initialize();">Tenerife <i class="icon-search"></i> Finder</a>
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
 					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
@@ -51,12 +47,12 @@
 				</nav>
 			</nav>
 			<div class="header h1 text-center fg-yellow" style="position:absolute; left:0%; top:10%; width:100%;">
-					Tenerife <img src="TenerifeIcono.png" style="width: 10%; height: 10%"> </img> Finder
+					Tenerife <img src="images/TenerifeIcono.png" style="width: 10%; height: 10%"> </img> Finder
 			</div>
 			
 			<div class="tile" style="background:#4383C7;position:absolute; left:5%; top:30%; height:40%; width:25%">
 				<div class="tile-content text-center image">
-					<img src="TenerifeIcono.png">
+					<img src="images/TenerifeIcono.png">
 				</div>
 				<div class="brand bg-dark opacity">
 					<span class="text">
@@ -66,7 +62,7 @@
 			</div>
 			<div class="tile" style="background:#4383C7;position:absolute; left:35%; top:30%; height:40%; width:25%">
 				<div class="tile-content image">
-					<img src="asistente.png">
+					<img src="images/asistente.png">
 				</div>
 				<div class="brand bg-dark opacity">
 					<span class="text">
@@ -76,7 +72,7 @@
 			</div>
 			<div class="tile" style="background:#4383C7;position:absolute; left:65%; top:30%; height:40%; width:25%">
 				<div class="tile-content text-center image">
-					<img src="maps.jpg">
+					<img src="images/maps.jpg">
 				</div>
 				<div class="brand bg-dark opacity">
 					<span class="text">
@@ -92,7 +88,7 @@
 			<nav class="navigation-bar  bg-darkCobalt fixed-top">
 				<nav class="navigation-bar-content">
 					<a class="element brand fg-white" href="#page1" data-transition="flip">Home <i class="icon-home"></i></a>
-					<a class="element fg-white" href="#page2" data-transition="flip" onclick="initialize();>Tenerife <i class="icon-search"></i> Finder</a>
+					<a class="element fg-white" href="#page2" data-transition="flip">Tenerife <i class="icon-search"></i> Finder</a>
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
 					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
@@ -130,14 +126,14 @@
 					Hablar con Tati
 				</button>
 			</div>
-
+		
 		</div>
 		
 		<div data-role="page" id="page3" style="background:#4383C7;">
 			<nav class="navigation-bar  bg-darkCobalt fixed-top">
 				<nav class="navigation-bar-content">
 					<a class="element brand fg-white" href="#page1" data-transition="flip">Home <i class="icon-home"></i></a>
-					<a class="element fg-white" href="#page2" data-transition="flip" onclick="initialize();>Tenerife <i class="icon-search"></i> Finder</a>
+					<a class="element fg-white" href="#page2" data-transition="flip" onload="initialize();">Tenerife <i class="icon-search"></i> Finder</a>
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
 					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
@@ -163,7 +159,7 @@
 			<nav class="navigation-bar  bg-darkCobalt fixed-top">
 				<nav class="navigation-bar-content">
 					<a class="element brand fg-white" href="#page1" data-transition="flip">Home <i class="icon-home"></i></a>
-					<a class="element fg-white" href="#page2" data-transition="flip" onclick="initialize();>Tenerife <i class="icon-search"></i> Finder</a>
+					<a class="element fg-white" href="#page2" data-transition="flip">Tenerife <i class="icon-search"></i> Finder</a>
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
 					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
@@ -218,7 +214,7 @@
 				</div>
 				<!-- FIN -- FORMULARIO DE REGISTRO!!! -->	
 				
-				<img src="TenerifeIcono.png" style="position:absolute; width: 40%; height: 110%; left: 50%; top: 60%"> </img>
+				<img src="images/TenerifeIcono.png" style="position:absolute; width: 40%; height: 110%; left: 50%; top: 60%"> </img>
 				
 			</div>
 			
