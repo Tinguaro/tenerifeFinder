@@ -1,4 +1,4 @@
-var ip = "http://10.159.0.55/proyectoII/";
+var ip = "http://192.168.1.51/proyectoII/";
 var nombreLocal = "";
 var latlng, map, infoWindow;
 var markersBeber = [], markersComer = [], markersNoche = [];
@@ -79,10 +79,8 @@ function visualizarInfoLocal () {
 					}, 								 	
 					success: function(data){
 						if (data != "ERROR") {
-							console.log("calculamoss media " + data);
 							media = data; 
 						} else {
-							console.log("No se pudo obtener la media");
 							media = 0;
 						}
 						$("#infoLocal").append("<p>Media de valoraciones: " + media + "</p>");
@@ -134,20 +132,20 @@ function mostrarAlertaNoche() {
 	peticionMarkers ("noche");
 }
 
-function onConfirm () {
-	vibrar ();
-}  
+function onConfirm () {}  
 
 /* *****************************************************************************************
  * 			Consultas a la Base de datos de los Establecimientos
  ******************************************************************************************/
 function peticionMarkers (tipo) {
+	alert ("entra a peticion markers");
 	$.ajax({
 			type: "POST",
 			url: ip + "consultarGeoloc.php",
 			data: "tipo=" + tipo,
 			dataType: "html",
 			error: function(){
+				alert("error en peticion markers");
 			}, 									
 			success: function(data){  
 				crearMarkers(data);

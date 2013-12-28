@@ -43,8 +43,6 @@ function obtenerOrden (frase) {
 			case 'beber': case 'tomar': 
 				console.log ("Entendida la palabra " + ordenes[i] + " en lo pronunciado");
 				mostrarAlertaBeber();
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">He entendido sitios donde beber</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=He+entendido+ir+a+beber' style='display: none'></iframe>");
 			break;
@@ -52,8 +50,6 @@ function obtenerOrden (frase) {
 			case 'comer':
 				console.log ("Entendida la palabra  " + ordenes[i] + "  en lo pronunciado");
 				mostrarAlertaComer();
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">He entendido sitios donde comer</div>'));				
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=He+entendido+ir+a+comer' style='display: none'></iframe>");
 			break;
@@ -61,40 +57,24 @@ function obtenerOrden (frase) {
 			case 'fiesta':	case 'noche':
 				console.log ("Entendida la palabra  " + ordenes[i] + "  en lo pronunciado");
 				mostrarAlertaNoche();
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">He entendido sitios donde salir de fiesta</div>'));				
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=He+entendido+sitios+donde+salir+de+fiesta+o+a+tomar+algo' style='display: none'></iframe>");
 			break;
 			
-			case 'principal': case 'jom': case 'inicio':
-				$("#sonidosAsistente").empty ();
-				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+dicho+ir+a+home' style='display: none'></iframe>");			
+			case 'principal': case 'inicio':
 				$.mobile.changePage("#page1");
 			break;
 			
-			case 'tenerife': case 'finder':
-				$("#sonidosAsistente").empty ();
-				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+dicho+ir+a+Tenerife+Finder' style='display: none'></iframe>");			
-				$.mobile.changePage("#page2");
-			break;
-			
 			case 'acerca': case 'sobre': case 'about':
-				$("#sonidosAsistente").empty ();
-				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+dicho+ir+a+about+us' style='display: none'></iframe>");
 				$.mobile.changePage("#page3");
 			break;
 			
 			case 'hola':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Hola, &iquestQu&eacute tal?</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Hola+qué+tal' style='display: none'></iframe>");
 			break;
 			
-			case 'chao': case 'adios':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Adi&oacutes espero volver a verle pronto</div>'));
+			case 'chao': 
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Adiós+Espero+volver+a+verle+pronto' style='display: none'></iframe>");
 				$.mobile.changePage("#page1");
@@ -107,19 +87,20 @@ function obtenerOrden (frase) {
 					window.open('', '_self', '');
 					window.close();
 				} else {
-					$("#textoAsistente").empty();
-					$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Gracias por quedarte</div>'));
-					$("#sonidosAsistente").empty ();
-					$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Gracias+por+quedarte' style='display: none'></iframe>");
-				
+					
 				}
 			break;
 			
-			case 'p***': case 'tonta': case 'gilipollas': case 'idiota':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Eso lo ser&aacute tu madre por favor tenga educaci&oacuten</div>'));
+			case 'p***': case 'tonta': case 'g*********': case 'idiota':
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Eso+lo+será+tu+madre+por+favor+tenga+educación' style='display: none'></iframe>");
+				
+			break;
+			
+			case 'registro': case 'registrarse':
+				$.mobile.changePage("#pageRegistro");
+				$("#sonidosAsistente").empty ();
+				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=por+favor+cumplimente+los+datos+en+el+formulario+de+registro+que+le+mostramos' style='display: none'></iframe>");
 				
 			break;
 		}
