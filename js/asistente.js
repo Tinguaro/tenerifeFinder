@@ -74,21 +74,21 @@ function obtenerOrden (frase) {
 				case 'principal': case 'inicio':
 					$("#sonidosAsistente").empty ();
 					$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+inicio' style='display: none'></iframe>");		
-					$.mobile.changePage("#page1");
+					$.mobile.changePage("#page1", {transition:"flip"});
 					encontrado = true;
 				break;
 
 				case 'tenerife': case 'finder':
 					$("#sonidosAsistente").empty ();
 					$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+Tenerife+Finder' style='display: none'></iframe>");		
-					$.mobile.changePage("#page2");
+					$.mobile.changePage("#page2", {transition:"flip"});
 					encontrado = true;
 				break;
 							
 				case 'acerca': case 'sobre': case 'about':
 					$("#sonidosAsistente").empty ();
 					$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+nuestra+información' style='display: none'></iframe>");
-					$.mobile.changePage("#page3");
+					$.mobile.changePage("#page3", {transition:"flip"});
 					encontrado = true;
 				break;
 				
@@ -103,7 +103,7 @@ function obtenerOrden (frase) {
 				case 'chao': case 'adios':
 					$("#sonidosAsistente").empty ();
 					$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Adiós+Espero+volver+a+verle+pronto' style='display: none'></iframe>");
-					$.mobile.changePage("#page1");
+					$.mobile.changePage("#page1", {transition:"flip"});
 					encontrado = true;
 				break;
 				
@@ -130,7 +130,7 @@ function obtenerOrden (frase) {
 				case 'registro': case 'registrarse':
 					$("#sonidosAsistente").empty ();
 					$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=por+favor+rellene+los+datos+en+el+formulario+de+registro+que+le+mostramos' style='display: none'></iframe>");
-					$.mobile.changePage("#pageRegistro");
+					$.mobile.changePage("#pageRegistro", {transition:"flip"});
 					encontrado = true;
 				break;
 			}
