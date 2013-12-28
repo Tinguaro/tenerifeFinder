@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="js/insertarBDDComentario.js"></script>
 		<script type="text/javascript" src="js/peticionBDDLogin.js"></script>
 		<script type="text/javascript" src="js/registro.js"></script>
+		<script type="text/javascript" src="js/asistente.js"></script>
 		
 		<script src="js/index.js"></script>
 		<script src="libs/metro*"></script>
@@ -57,7 +58,7 @@
 				</div>
 				<div class="brand bg-dark opacity">
 					<span class="text">
-						Busca y encuentra los mejores locales en la laguna
+						Busca y encuentra los mejores locales en la Laguna.
 					</span>
 				</div>
 			</div>
@@ -67,7 +68,7 @@
 				</div>
 				<div class="brand bg-dark opacity">
 					<span class="text">
-						Habla con Tati, nuestro asistente virtual que te ayudar&aacute durante tu estancia en esta p&aacutegina
+						Habla con Tati, nuestro asistente virtual que te ayudar&aacute durante tu estancia en esta p&aacutegina.
 					</span>
 				</div>
 			</div>
@@ -77,7 +78,7 @@
 				</div>
 				<div class="brand bg-dark opacity">
 					<span class="text">
-						Localiza tus bares favoritos con google maps
+						Localiza tus bares favoritos con GoogleMaps.
 					</span>
 				</div>
 			</div>
@@ -114,7 +115,7 @@
 				<li><a style="color:#FFFFFF;" href="#" onclick="mostrarAlertaNoche();">Noche</a></li>
 			</ul>
 			</nav>
-	
+			<div id="sonidosAsistente" style="display:hidden"> </div>
 			<!--> Asistente virtual(Modelo 3D)<!-->
 			AC_VHost_Embed(24099,225,300,'',1,1, 1982106, 0,1,0,'fb509f751966d0c03d5a89b0a0bb37b7',9);
 			<object id="asistente" type="application/x-shockwave-flash" id="VHSS" data="http://content.oddcast.com/vhss/vhss_v5.swf?doc=http%3A%2F%2Fvhss-d.oddcast.com%2Fphp%2FplayScene%2Facc%3D24099%2Fss%3D1982106%2Fsl%3D0&amp;acc=24099&amp;bgcolor=0x&amp;pageDomain=www.asistentesvirtuales.com&amp;lc_name=1388037164&amp;fv=9&amp;is_ie=0&amp;emb=8&amp;embedid=fb509f751966d0c03d5a89b0a0bb37b7" width="300" height="225"><param name="scale" value="noborder"><param name="bgcolor" value=""><param name="quality" value="high"><param name="name" value="VHSS"><param name="allowscriptaccess" value="always"><param name="swliveconnect" value="true"><param name="wmode" value="transparent"></object>
@@ -125,10 +126,11 @@
 			<div id="mapa"></div>			
 			
 			<div style="position:absolute; left:10%; top:91%; height:5%; width:20%;">
-				<button>
+				<button onclick="iniciarReconocimiento();">
 					<i class="icon-mic"></i>
 					Hablar con Tati
 				</button>
+				<!--input id="myinput" type="speech" name="input" lang="es-ES" onwebkitspeechchange="ejecutarComandoVoz (this.value);" x-webkit-speech="x-webkit-speech" /-->
 			</div>
 		
 		</div>
@@ -156,22 +158,22 @@
 					<span class="element-divider place-right"></span>
 				</nav>
 			</nav>
-			<!-- QUE ES TENERIFE FINDE -->
+			<!-- QUÉ ES TENERIFE FINDER -->
 			<div style="position:absolute; left:15%; top:10%; width:40%; height:20%;">
-				<h2 style="color:yellow;position:absolute; left:20%; top:10%;">&iquestQu&eacute es Tenerife Finde?</h2>
+				<h2 style="color:yellow;position:absolute; left:20%; top:10%;">&iquestQu&eacute es Tenerife Finder?</h2>
 				<p style="color:white;position:absolute; left:15%; top:45%;">Web de b&uacutesqueda que permitie a los usuarios encontrar los locales
-					de la laguna visualizando su localizaci&oacuten en GoogleMaps con ayuda de nuestro asistente virtual. La idea para el desarrollo de esta plataforma 
-					viene del trabajo realizado en un proyecto para la misma asignatura donde desarrollamos una aplicaci&oacuten usando phonegap.
+					de la laguna, visualizando su localizaci&oacuten en GoogleMaps y con ayuda de nuestro asistente virtual << Tati >>. La idea para el desarrollo de esta plataforma 
+					surge del trabajo realizado en un proyecto para la misma asignatura donde desarrollamos una aplicaci&oacuten del mismo tipo, usando Phonegap.
 				</p>
 			</div>
-			<!-- QUIENES SOMOS -->
+			<!-- QUIÉNES SOMOS -->
 			<div style="position:absolute; left:15%; top:40%; width:40%; height:20%;">
 				<h2 style="color:yellow;position:absolute; left:20%; top:10;">&iquestQui&eacutenes somos?</h2>
-				<p style="color:white;position:absolute; left:15%; top:45%;"> Grupo de la asignatura Interfaces Inteligentes de cuarto curso en el Grado de Ingenier&iacutea Inform&aacutetica 
-				en la Escuela T&eacutecnica Superior de Ingenier&iacutea de Inform&aacutetica Universidad de La Laguna.
+				<p style="color:white;position:absolute; left:15%; top:45%;"> Grupo de la asignatura Interfaces Inteligentes, de cuarto curso del Grado en Ingenier&iacutea Inform&aacutetica 
+				de la Escuela T&eacutecnica Superior de Ingenier&iacutea de Inform&aacutetica, Universidad de La Laguna.
 				</p>
 			</div>
-			<!-- Carrousel de imagenes de la app -->
+			<!-- Carousel de imágenes de la App. -->
 			<div style="position:absolute; top: 10%; left: 60%;">
 				<div class="carousel">
 					<img class="slide"  src="images/appMovil1.jpg"></img>
@@ -208,10 +210,10 @@
 			</div>
 			
 			<div class="ficha" style="position:absolute; left:15%; top:130%;">
-				<img style="position:absolute; left:5%; top:10%; width:25%; height:50%;" src="images/x.jpg"></img>
-				<p style="position:absolute; left:35%; top:10%;"><b>Nombre:</b> Maikels</p>
-				<p style="position:absolute; left:35%; top:25%;"><b>Apellidos:</b> </p>
-				<p style="position:absolute; left:35%; top:40%;"><b>Edad:</b> </p>
+				<img style="position:absolute; left:5%; top:10%; width:25%; height:50%;" src="images/maikel.jpg"></img>
+				<p style="position:absolute; left:35%; top:10%;"><b>Nombre:</b> Maikel</p>
+				<p style="position:absolute; left:35%; top:25%;"><b>Apellidos:</b> P&eacuterez Bello</p>
+				<p style="position:absolute; left:35%; top:40%;"><b>Edad:</b> 22</p>
 				<p style="position:absolute; left:35%; top:55%;"><b>Curso:</b> 4</p>
 			</div>
 			
