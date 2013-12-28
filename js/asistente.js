@@ -68,28 +68,20 @@ function obtenerOrden (frase) {
 			break;
 			
 			case 'principal': case 'inicio':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido ir a Home</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+inicio' style='display: none'></iframe>");		
-				sleep(tiempo);
 				$.mobile.changePage("#page1");
 			break;
 
 			case 'tenerife': case 'finder':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido ir a Tenerife Finder</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+Tenerife+Finder' style='display: none'></iframe>");		
 				$.mobile.changePage("#page2");
 			break;
 						
 			case 'acerca': case 'sobre': case 'about':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido ir a About us</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+nuestra+información' style='display: none'></iframe>");
-				sleep(tiempo);
 				$.mobile.changePage("#page3");
 			break;
 			
@@ -101,11 +93,8 @@ function obtenerOrden (frase) {
 			break;
 			
 			case 'chao': case 'adios':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white"Adi&oacutes espero volver a verle prontoe</div>'));			
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Adiós+Espero+volver+a+verle+pronto' style='display: none'></iframe>");
-				sleep(tiempo);
 				$.mobile.changePage("#page1");
 			break;
 			
@@ -129,11 +118,8 @@ function obtenerOrden (frase) {
 			break;
 			
 			case 'registro': case 'registrarse':
-				$("#textoAsistente").empty();
-				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Por favor rellene los datos en el formulario de registro que le mostramos</div>'));					
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=por+favor+rellene+los+datos+en+el+formulario+de+registro+que+le+mostramos' style='display: none'></iframe>");
-				sleep(tiempo);
 				$.mobile.changePage("#pageRegistro");
 			break;
 		}
@@ -143,16 +129,4 @@ function obtenerOrden (frase) {
 // Función de momento auxiliar para comprobar el parseo de la entrada de voz -> FUNCIONA CORRECTAMENTE
 function ejecutarComandoVoz (comandoVoz) {
 	obtenerOrden (comandoVoz);
-}
-
-
-
-//función sleep
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
 }
