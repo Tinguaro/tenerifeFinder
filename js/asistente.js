@@ -1,5 +1,5 @@
 var final_transcript;
-
+var tiempo = 3000;
 // *****************************************************************************/
 // IMPORTANTE!! Esta función no rula hasta que esté en el servidor el proyecto 
 // -> USO LA ÚLTIMA COMO AUXILIAR A TRAVÉS DEL BOTON ESE DE GOOGLE PARA RECONOCIMIENTO DE VOZ!! 
@@ -43,6 +43,8 @@ function obtenerOrden (frase) {
 			case 'beber': case 'tomar': 
 				console.log ("Entendida la palabra " + ordenes[i] + " en lo pronunciado");
 				mostrarAlertaBeber();
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">He entendido ir a beber</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=He+entendido+ir+a+beber' style='display: none'></iframe>");
 			break;
@@ -50,6 +52,8 @@ function obtenerOrden (frase) {
 			case 'comer':
 				console.log ("Entendida la palabra  " + ordenes[i] + "  en lo pronunciado");
 				mostrarAlertaComer();
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">He entendido ir a comer</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=He+entendido+ir+a+comer' style='display: none'></iframe>");
 			break;
@@ -57,26 +61,51 @@ function obtenerOrden (frase) {
 			case 'fiesta':	case 'noche':
 				console.log ("Entendida la palabra  " + ordenes[i] + "  en lo pronunciado");
 				mostrarAlertaNoche();
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">He entendido sitios donde salir de fiesta o tomar algo</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=He+entendido+sitios+donde+salir+de+fiesta+o+a+tomar+algo' style='display: none'></iframe>");
 			break;
 			
 			case 'principal': case 'inicio':
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido ir a Home</div>'));
+				$("#sonidosAsistente").empty ();
+				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+inicio' style='display: none'></iframe>");		
+				sleep(tiempo);
 				$.mobile.changePage("#page1");
 			break;
-			
+
+			case 'tenerife': case 'finder':
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido ir a Tenerife Finder</div>'));
+				$("#sonidosAsistente").empty ();
+				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+Tenerife+Finder' style='display: none'></iframe>");		
+				$.mobile.changePage("#page2");
+			break;
+						
 			case 'acerca': case 'sobre': case 'about':
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido ir a About us</div>'));
+				$("#sonidosAsistente").empty ();
+				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Has+elegido+ir+a+nuestra+información' style='display: none'></iframe>");
+				sleep(tiempo);
 				$.mobile.changePage("#page3");
 			break;
 			
 			case 'hola':
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Hola &iquestQu&eacute tal?</div>'));
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Hola+qué+tal' style='display: none'></iframe>");
 			break;
 			
-			case 'chao': 
+			case 'chao': case 'adios':
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white"Adi&oacutes espero volver a verle prontoe</div>'));			
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Adiós+Espero+volver+a+verle+pronto' style='display: none'></iframe>");
+				sleep(tiempo);
 				$.mobile.changePage("#page1");
 			break;
 			
@@ -92,16 +121,20 @@ function obtenerOrden (frase) {
 			break;
 			
 			case 'p***': case 'tonta': case 'g*********': case 'idiota':
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Eso lo ser&aacute tu madre, por favor tenga educaci&oacuten</div>'));					
 				$("#sonidosAsistente").empty ();
 				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=Eso+lo+será+tu+madre+por+favor+tenga+educación' style='display: none'></iframe>");
 				
 			break;
 			
 			case 'registro': case 'registrarse':
-				$.mobile.changePage("#pageRegistro");
+				$("#textoAsistente").empty();
+				$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Por favor rellene los datos en el formulario de registro que le mostramos</div>'));					
 				$("#sonidosAsistente").empty ();
-				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=por+favor+cumplimente+los+datos+en+el+formulario+de+registro+que+le+mostramos' style='display: none'></iframe>");
-				
+				$("#sonidosAsistente").append ("<iframe src='http://translate.google.com/translate_tts?tl=es&q=por+favor+rellene+los+datos+en+el+formulario+de+registro+que+le+mostramos' style='display: none'></iframe>");
+				sleep(tiempo);
+				$.mobile.changePage("#pageRegistro");
 			break;
 		}
 	}
@@ -110,4 +143,16 @@ function obtenerOrden (frase) {
 // Función de momento auxiliar para comprobar el parseo de la entrada de voz -> FUNCIONA CORRECTAMENTE
 function ejecutarComandoVoz (comandoVoz) {
 	obtenerOrden (comandoVoz);
+}
+
+
+
+//función sleep
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
 }

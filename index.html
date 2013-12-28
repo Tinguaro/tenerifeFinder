@@ -126,11 +126,8 @@
 			<div id="mapa"></div>			
 			
 			<div style="position:absolute; left:10%; top:91%; height:5%; width:20%;">
-				<!--button>
-					<i class="icon-mic"></i>
-					Hablar con Tati
-				</button-->
-				<input id="myinput" type="speech" name="input" lang="es-ES" onwebkitspeechchange="ejecutarComandoVoz (this.value);" x-webkit-speech="x-webkit-speech" />
+				<button onclick="iniciarReconocimiento();">Hablar con Tati<i class="icon-mic"></i></button>
+				<!--input id="myinput" type="speech" name="input" lang="es-ES" onwebkitspeechchange="ejecutarComandoVoz (this.value);" x-webkit-speech="x-webkit-speech" /-->
 			</div>
 		
 		</div>
