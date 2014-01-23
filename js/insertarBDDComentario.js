@@ -6,7 +6,7 @@ function insertarComentario () {
 	
 	$.ajax({
 			type: "POST",
-			url: ip + "insertarComentario.php",
+			url: ip + "/php/insertarComentario.php",
 			data: "user=" + nombre + "&loc=" + local + "&cmt=" + comentario, 
 			dataType: "html",
 			error: function(){

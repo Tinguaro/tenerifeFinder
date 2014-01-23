@@ -4,7 +4,7 @@ function comprobarLogin () {
 	//hace la búsqueda
 	$.ajax({
 			type: "POST",
-			url: ip + "consultarLogin.php",
+			url: ip + "/php/consultarLogin.php",
 			data: "user=" + $("#user").val(),
 			dataType: "html",
 			error: function(){

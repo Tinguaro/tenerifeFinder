@@ -8,7 +8,7 @@ $("#busqueda").keyup(function(e){
 	//hace la búsqueda
 	$.ajax({
 			type: "POST",
-			url: ip + "consultarGeoloc.php",
+			url: ip + "/php/consultarGeoloc.php",
 			data: "b=" + $("#busqueda").val(),
 			dataType: "html",
 			error: function(){

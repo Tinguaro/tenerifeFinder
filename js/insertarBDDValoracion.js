@@ -6,7 +6,7 @@ function insertarValoracion (local, usuario, puntos) {
 	//hace la búsqueda
 	$.ajax({
 			type: "POST",
-			url: ip + "insertarValoracion.php",
+			url: ip + "/php/insertarValoracion.php",
 			data: "user=" + usuario + "&loc=" + local + "&pts=" + puntos, 
 			dataType: "html",
 			error: function(){

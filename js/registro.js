@@ -15,7 +15,7 @@ function ejecutarRegistro () {
 		
 			$.ajax({
 				type: "POST",
-				url: ip + "insertarRegistro.php",
+				url: ip + "/php/insertarRegistro.php",
 				data: "usu=" + nombreUsuario + "&pass=" + password1,
 				dataType: "html",
 				error: function(){
