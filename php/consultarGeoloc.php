@@ -1,4 +1,13 @@
 <?php
+	echo "PHP consulta Geolocalizacione"
+	function conectaDb(){
+	    try {
+		$db = new PDO("sqlite:./TenerifeFinder.sqlite");
+		return($db);
+	    } catch (PDOException $e) {
+			//print "<p>Error: No puede conectarse con la base de datos.</p>\n";
+	    }
+	}
 	
       $buscar = $_POST['tipo'];
        
@@ -6,22 +15,17 @@
             buscar($buscar);
       }
        
+	 
       function buscar($buscar) {
-            $con = mysql_connect('localhost', 'root');
-			if (!$con) {
-				die('Not connected : ' . mysql_error());
-			}
-            mysql_select_db('interfaces', $con);
-       
-            $sql = mysql_query("SELECT * FROM establecimientos WHERE tipo='$buscar'", $con);
-			
-            $contar = mysql_num_rows($sql);
-             
-            if ($contar == 0){
+            $db = conectaDb();
+			$tabla = "establecimientos";
+			$tipo = "tipo";
+			$consulta = "SELECT * FROM &tabla WHERE $tipo='$buscar'";
+            $sql = db->query($consulta);
+            if (!$sql){
                 echo "No se han encontrado resultados para '<b>".$buscar."</b>'.";
-            
 			} else {
-                while ($row = mysql_fetch_array ($sql)){
+                foreach ($sql as $row)){
 					$nom = $row['nombre'];
 					$dir = $row['dir'];
 					$type = $row['tipo'];
@@ -33,4 +37,5 @@
             }
       }
        
+	   //db = NULL;
 ?>

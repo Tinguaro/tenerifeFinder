@@ -1,4 +1,4 @@
-var ip = "http://192.168.1.51/proyectoII/";
+var ip = "../tenerifeFinder/php/";
 var nombreLocal = "";
 var latlng, map, infoWindow;
 var markersBeber = [], markersComer = [], markersNoche = [];
@@ -154,6 +154,8 @@ function peticionMarkers (tipo) {
 }
  
 function crearMarkers(data) {
+	console.log("--------Petición markers");
+	console.log(data);
 	var nombre, latitud, longitud, tipo, direccion, capacidad;
 	var marker;
 	var tuplas = data.split(";");
@@ -164,6 +166,7 @@ function crearMarkers(data) {
 	esconderMarkers (markersComer);
 	esconderMarkers (markersNoche);
 	for (var i in tuplas) {
+	console.log(i);
 		linea = tuplas[i].split("_");
 			nombre = linea[0];
 			latitud = linea[1];
