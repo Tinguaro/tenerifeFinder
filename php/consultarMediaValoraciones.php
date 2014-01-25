@@ -2,12 +2,16 @@
     
 	$local = $_POST['nombre'];
 	
-    $con = mysql_connect('localhost', 'root');
+    $host='mysql.hostinger.es';
+	$us='u282225314_jefe';
+	$pas='Amoelrap1991';
+	$nombreBD='u282225314_tf';
+	$con = mysql_connect($host,$us,$pas);
 	if (!$con) {
 		die('Not connected : ' . mysql_error());
 	}
 			
-    mysql_select_db('interfaces', $con);
+    mysql_select_db($nombreBD, $con);
     $sql = mysql_query("SELECT AVG(puntos) FROM valoraciones WHERE nombreLocal='$local' GROUP BY nombreLocal", $con);
              
 	$contar = mysql_num_rows($sql);

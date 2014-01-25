@@ -1,26 +1,28 @@
 <!DOCTYPE html5>
 <html lang="en">
     <head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<link rel="stylesheet" href="css/mio.css">
 		<link rel="stylesheet" href="css/metro-bootstrap.css">
 		<link rel="stylesheet" href="css/jquery.mobile-1.3.2.css">
 		<link rel="stylesheet" href="css/ficha.css">
-		
-        <script src="libs/jquery.js"></script>
+		<script src="libs/jquery.js"></script>
 		<script src="libs/jquery.mobile-1.3.2.js"></script>
 		<script src="libs/metro.min.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-        <script type="text/javascript" src="js/insertarBDDValoracion.js"></script
+        <script type="text/javascript" src="js/peticionBDDLogin.js"></script>
+		<script type="text/javascript" src="js/insertarBDDValoracion.js"></script>
 		<script type="text/javascript" src="js/insertarBDDComentario.js"></script>
-		<script type="text/javascript" src="js/peticionBDDLogin.js"></script>
 		<script type="text/javascript" src="js/registro.js"></script>
 		<script type="text/javascript" src="js/asistente.js"></script>
+		<script type="text/javascript" src="libs/JSARToolKit.js"></script>
+		<script type="text/javascript" src="libs/three.js"></script>
+		<script type="text/javascript" src="js/camara.js"></script>
 		
 		<script src="js/index.js"></script>
 		<script src="libs/metro*"></script>
-	
     </head>
-    <body class="metro" style="background:#4383C7;" onload="initialize();">
+    <body class="metro" style="background:#4383C7;">
 		
 		<!-- PÁGINA DE INICIO -->
 		<div data-role="page" id="page1" style="background:#4383C7;">
@@ -33,17 +35,6 @@
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
 					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
-					<div class="element place-right">
-						<a class="dropdown-toggle">Iniciar <span class="icon-user"></span></a>
-						<div class="dropdown-menu place-right bg-darkCobalt bd-darkCobalt" data-role="dropdown">
-							<div class="input-control text span3 bg-darkCobalt fg-white bd-white">
-								<input type="text" value="" placeholder="usuario"/>
-							</div>
-							<div class="input-control password span3 bg-darkCobalt fg-white bd-white">
-								<input type="password" value="" placeholder="password"/>
-							</div>
-						</div>
-					</div>
 					<span class="element-divider place-right"></span>
 				</nav>
 			</nav>
@@ -51,7 +42,13 @@
 					Tenerife <img src="images/TenerifeIcono.png" style="width: 10%; height: 10%"> </img> Finder
 			</div>
 			
-			<div class="tile" style="background:#4383C7;position:absolute; left:5%; top:30%; height:40%; width:25%">
+			<div id="contenidoLogin">
+				<input id="user" type="text" value="usuario" style="background:#4383C7; color:white;"/>
+				<input id="password" type="password" value="password" style="background:#4383C7; color:white;"/>
+				<a class="button large bg-darkCobalt bd-black fg-white" onclick="comprobar();">Iniciar <span class="icon-arrow-right-2"></span></a>
+			</div>
+					
+			<div class="tile bg-green" style="background:#4383C7;position:absolute; left:5%; top:30%; height:40%; width:25%">
 				<div class="tile-content text-center image">
 					<img src="images/TenerifeIcono.png">
 				</div>
@@ -61,7 +58,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="tile" style="background:#4383C7;position:absolute; left:35%; top:30%; height:40%; width:25%">
+			<div class="tile bg-red" style="background:#4383C7;position:absolute; left:35%; top:30%; height:40%; width:25%">
 				<div class="tile-content image">
 					<img src="images/asistente.png">
 				</div>
@@ -71,7 +68,7 @@
 					</span>
 				</div>
 			</div>
-			<div class="tile" style="background:#4383C7;position:absolute; left:65%; top:30%; height:40%; width:25%">
+			<div class="tile bg-violet" style="background:#4383C7;position:absolute; left:65%; top:30%; height:40%; width:25%">
 				<div class="tile-content text-center image">
 					<img src="images/maps.jpg">
 				</div>
@@ -107,28 +104,36 @@
 					<span class="element-divider place-right"></span>
 				</nav>
 			</nav>
-			<nav class="horizontal-menu fg-white" style="position:absolute; top:10%; left:35%;">
+			<!--> Botones beber,comer y noche<!-->
+			<nav class="horizontal-menu" style="position:absolute; top:10%; left:35%;">
 			<ul>
-				<li><a style="color:#FFFFFF;" href="#" onclick="mostrarAlertaBeber();">Beber</a></li>
-				<li><a style="color:#FFFFFF;" href="#" onclick="mostrarAlertaComer();">Comer</a></li>
-				<li><a style="color:#FFFFFF;" href="#" onclick="mostrarAlertaNoche();">Noche</a></li>
+				<li><a class="button large bg-green bd-black fg-white" onclick="mostrarAlertaBeber();">Beber</a></li>
+				<li><a class="button large bg-red bd-black fg-white" onclick="mostrarAlertaComer();">Comer</a></li>
+				<li><a class="button large bg-darkPink bd-black fg-white" onclick="mostrarAlertaNoche();">Noche</a></li>
 			</ul>
 			</nav>
+			
 			<div id="sonidosAsistente" style="display:hidden"> </div>
 			<!--> Asistente virtual(Modelo 3D)<!-->
 			AC_VHost_Embed(24099,225,300,'',1,1, 1982106, 0,1,0,'fb509f751966d0c03d5a89b0a0bb37b7',9);
 			<object id="asistente" type="application/x-shockwave-flash" id="VHSS" data="http://content.oddcast.com/vhss/vhss_v5.swf?doc=http%3A%2F%2Fvhss-d.oddcast.com%2Fphp%2FplayScene%2Facc%3D24099%2Fss%3D1982106%2Fsl%3D0&amp;acc=24099&amp;bgcolor=0x&amp;pageDomain=www.asistentesvirtuales.com&amp;lc_name=1388037164&amp;fv=9&amp;is_ie=0&amp;emb=8&amp;embedid=fb509f751966d0c03d5a89b0a0bb37b7" width="300" height="225"><param name="scale" value="noborder"><param name="bgcolor" value=""><param name="quality" value="high"><param name="name" value="VHSS"><param name="allowscriptaccess" value="always"><param name="swliveconnect" value="true"><param name="wmode" value="transparent"></object>
 				
-			<div id="textoAsistente" style="position:absolute; top:25%; left:10%; height:15%; width:19%;">
+			<div id="textoAsistente" style="position:absolute; top:15%; left:2%; height:15%; width:19%;">
 			</div>
 			
 			<div id="mapa"></div>			
 			
-			<div style="position:absolute; left:10%; top:91%; height:5%; width:20%;">
+			<div style="position:absolute; left:2%; top:76%; height:5%; width:20%;">
 				<button onclick="iniciarReconocimiento();">Hablar con Tati<i class="icon-mic"></i></button>
 				<!--input id="myinput" type="speech" name="input" lang="es-ES" onwebkitspeechchange="ejecutarComandoVoz (this.value);" x-webkit-speech="x-webkit-speech" /-->
 			</div>
-		
+			
+			<!--> Cámara RA <!-->
+			<div id="camara">
+				<canvas id="divContain"></canvas>
+			</div>
+			
+			<div id="RA"><button onclick="init();">Iniciar Realidad Aumentada <i class="icon-film"></i></button></div>
 		</div>
 		
 	

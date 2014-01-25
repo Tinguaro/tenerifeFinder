@@ -1,16 +1,55 @@
+#usu{
+	background:#ffffff;
+	width:10px;
+	height:5px;
+}
+#pass{
+	background:#ffffff;
+	width:10px;
+	height:1px;
+}
+
+#contenidoLogin{
+	background:#4383C7;
+	border:1px;
+	position:absolute;
+	left:50%;
+	top:80%;
+	width:25%;
+	height:10%;
+}
+
 #asistente{
 	background:#ffffff;
 	position:absolute;
-	left:10%;
-	top:45%;
+	left:2%;
+	top:30%;
 	width:20%;
 	height:45%;
 }
+
 #mapa{
 	background:#ffffff;
 	position:absolute;
-	left:32%;
-	top:30%;
-	width:58%;
+	left:24%;
+	top:25%;
+	width:53%;
 	height:60%;
+}
+
+#camara{
+	position:absolute;
+	left:76%;
+	top:30%;
+	width:20%;
+	height:45%;
+}
+
+
+#RA{
+	position:absolute;
+	left:78%;
+	top:76%;
+	width:20%;
+	height:10%;
 }

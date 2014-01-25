@@ -7,11 +7,15 @@
       }
        
       function buscar($buscar) {
-            $con = mysql_connect('localhost', 'root');
+           $host='mysql.hostinger.es';
+		   $us='u282225314_jefe';
+		   $pas='Amoelrap1991';
+		   $nombreBD='u282225314_tf';
+		   $con = mysql_connect($host,$us,$pas);
 			if (!$con) {
 				die('Not connected : ' . mysql_error());
 			}
-            mysql_select_db('interfaces', $con);
+            mysql_select_db($nombreBD, $con);
        
             $sql = mysql_query("SELECT * FROM establecimientos WHERE nombre='$buscar'", $con);
 			

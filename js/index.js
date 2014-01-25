@@ -1,8 +1,9 @@
-var ip = "../tenerifeFinder/php/";
+var ip = "/php/";
 var nombreLocal = "";
 var latlng, map, infoWindow;
 var markersBeber = [], markersComer = [], markersNoche = [];
 var info = [];
+
 
 function initialize() {
 		
@@ -106,7 +107,6 @@ function anteElExito(position) {
 
 function anteElError(error) {
 	console.log("ERROR : " + error.code);
-    alert("ERROR: no ha sido posible GEO-LOCALIZARLE. Pulse REFRESCAR");
 }
 
 
@@ -138,7 +138,6 @@ function onConfirm () {}
  * 			Consultas a la Base de datos de los Establecimientos
  ******************************************************************************************/
 function peticionMarkers (tipo) {
-	alert ("entra a peticion markers");
 	$.ajax({
 			type: "POST",
 			url: ip + "consultarGeoloc.php",
@@ -154,23 +153,23 @@ function peticionMarkers (tipo) {
 }
  
 function crearMarkers(data) {
-	console.log("--------Petición markers");
-	console.log(data);
+	console.log("<--------Petición markers------------------>");
 	var nombre, latitud, longitud, tipo, direccion, capacidad;
 	var marker;
 	var tuplas = data.split(";");
 	var linea;
 	var ventanitaInfo;
-
+	
 	esconderMarkers (markersBeber);
 	esconderMarkers (markersComer);
 	esconderMarkers (markersNoche);
+	
 	for (var i in tuplas) {
-	console.log(i);
 		linea = tuplas[i].split("_");
 			nombre = linea[0];
 			latitud = linea[1];
-			longitud = linea[2]; 
+			longitud = linea[2];
+			console.log("latitud = " + latitud + "  longitud = " + longitud);
 			tipo = linea[3];
 			direccion = linea[4];
 			capacidad = linea[5];

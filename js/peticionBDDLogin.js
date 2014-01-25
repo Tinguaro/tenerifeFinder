@@ -1,25 +1,30 @@
-//$.mobile.changePage ($("#page4"), "flip");
-function comprobarLogin () {
+var usuario;
 
+function todoListo() {
+//$("contenidoLogin").remove();Ç
+$(".navigation-bar-content").append($('<a class="place-rigth fg-white">'+usuario+'</a>'));
+}
+
+function comprobar() {
+	alert("comprobamos el login...");
 	//hace la búsqueda
 	$.ajax({
 			type: "POST",
-			url: ip + "/php/consultarLogin.php",
+			url: ip + "consultarLogin.php",
 			data: "user=" + $("#user").val(),
 			dataType: "html",
 			error: function(){
-				//$.mobile.changePage ($("#page1"), "flip");
+				alert("Error al intentar comprobar el Login.");
 			}, 
 								
 			success: function(data){
-				
+				console.log("Consulta correcta Data -> " + data);
 				if (data.length > 0 && data == $("#password").val()) {
+					usuario = $("#user").val();
 					todoListo ();
-				
-				$.mobile.changePage($("#page2"),"flip");
-					
 				} else 
 					alert ("ERROR: usuario o password incorrectos!");
 			}
 	});															   
 }
+
