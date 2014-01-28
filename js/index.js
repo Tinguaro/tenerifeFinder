@@ -3,7 +3,7 @@ var nombreLocal = "";
 var latlng, map, infoWindow;
 var markersBeber = [], markersComer = [], markersNoche = [];
 var info = [];
-
+var tipoLocal = "";
 
 function initialize() {
 		
@@ -117,19 +117,25 @@ function anteElError(error) {
 function mostrarAlertaBeber() {
 	$("#textoAsistente").empty();
 	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido la opci&oacuten de Beber</div>'));
-	peticionMarkers ("beber");
+	tipoLocal = "beber";
+	peticionMarkers (tipoLocal);
+	cargarModelo ();
 }
 
 function mostrarAlertaComer() {
 	$("#textoAsistente").empty();
 	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido la opci&oacuten de Comer</div>'));
-	peticionMarkers ("comer");
+	tipoLocal = "comer";
+	peticionMarkers (tipoLocal);
+	cargarModelo ();
 }
 
 function mostrarAlertaNoche() {
 	$("#textoAsistente").empty();
 	$("#textoAsistente").append($('<div class="notice marker-on-bottom bg-amber fg-white">Has elegido la opci&oacuten de Noche</div>'));
-	peticionMarkers ("noche");
+	tipoLocal = "noche";
+	peticionMarkers (tipoLocal);
+	cargarModelo ();
 }
 
 function onConfirm () {}  

@@ -16,8 +16,13 @@
 		<script type="text/javascript" src="js/registro.js"></script>
 		<script type="text/javascript" src="js/asistente.js"></script>
 		<script type="text/javascript" src="libs/JSARToolKit.js"></script>
-		<script type="text/javascript" src="libs/three.js"></script>
+		<script type="text/javascript" src="libs/threelast.js"></script>
+		<script type="text/javascript" src="libs/ColladaLoader.js"></script>
 		<script type="text/javascript" src="js/camara.js"></script>
+		
+		<script type="text/javascript">
+			iniciarModelos ();
+		</script>
 		
 		<script src="js/index.js"></script>
 		<script src="libs/metro*"></script>
@@ -90,17 +95,7 @@
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
 					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
-					<div class="element place-right">
-						<a class="dropdown-toggle">Iniciar <span class="icon-user"></span></a>
-						<div class="dropdown-menu place-right bg-darkCobalt bd-darkCobalt" data-role="dropdown">
-							<div class="input-control text span3 bg-darkCobalt fg-white bd-white">
-								<input type="text" value="" placeholder="usuario"/>
-							</div>
-							<div class="input-control password span3 bg-darkCobalt fg-white bd-white">
-								<input type="password" value="" placeholder="password"/>
-							</div>
-						</div>
-					</div>
+					<a class="element place-right fg-white" href="#page1" data-transition="flip">Iniciar <span class="icon-user"></span></a>
 					<span class="element-divider place-right"></span>
 				</nav>
 			</nav>
@@ -130,10 +125,9 @@
 			
 			<!--> Cámara RA <!-->
 			<div id="camara">
-				<canvas id="divContain"></canvas>
 			</div>
 			
-			<div id="RA"><button onclick="init();">Iniciar Realidad Aumentada <i class="icon-film"></i></button></div>
+			<div id="RA"><button onclick="iniciarRA();">Iniciar Realidad Aumentada <i class="icon-film"></i></button></div>
 		</div>
 		
 	
@@ -145,17 +139,7 @@
 					<a class="element brand fg-white" href="#page3" data-transition="flip">About us <i class="icon-eye"></i></a>
 					<span class="element-divider"></span>
 					<a class="element place-right fg-white" href="#pageRegistro" data-transition="flip">Registro <span class="icon-pencil"></span></a>
-					<div class="element place-right">
-						<a class="dropdown-toggle">Iniciar <span class="icon-user"></span></a>
-						<div class="dropdown-menu place-right bg-darkCobalt bd-darkCobalt" data-role="dropdown">
-							<div class="input-control text span3 bg-darkCobalt fg-white bd-white">
-								<input type="text" value="" placeholder="usuario"/>
-							</div>
-							<div class="input-control password span3 bg-darkCobalt fg-white bd-white">
-								<input type="password" value="" placeholder="password"/>
-							</div>
-						</div>
-					</div>
+					<a class="element place-right fg-white" href="#page1" data-transition="flip">Iniciar <span class="icon-user"></span></a>
 					<span class="element-divider place-right"></span>
 				</nav>
 			</nav>
@@ -220,7 +204,7 @@
 			
 			<div class="ficha" style="position:absolute; left:15%; top:185%;">
 				<img style="position:absolute; left:5%; top:10%; width:25%; height:50%;" src="images/guillermo.jpg"></img>
-				<p style="position:absolute; left:35%; top:10%;"><b>Nombre:</b> Guillermo</p>
+				<p style="position:absolute; left:35%; top:10%;"><b>Nombre:</b> Guillermo</p>0
 				<p style="position:absolute; left:35%; top:25%;"><b>Apellidos:</b> Rodr&iacuteguez Pardo</p>
 				<p style="position:absolute; left:35%; top:40%;"><b>Edad:</b> 29</p>
 				<p style="position:absolute; left:35%; top:55%;"><b>Curso:</b> 4</p>

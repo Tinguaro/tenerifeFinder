@@ -1,24 +1,37 @@
+// Variables globales en el proceso de R.A.
+
+var cargador = new THREE.ColladaLoader();
+var modelo, param, tmp, videoCanvas, video, ctx, canvas, detector, renderer, raster, resultMat;
 var threshold = 128;
-			
+var ancho = Math.floor (window.innerWidth * 0.20);
+var alto = Math.floor (window.innerHeight * 0.45);
+var markers = {};
+
+/*
+ * Función de comprobación para la R.A.
+ */
 function hasGetUserMedia() {
 	// Note: Opera no se puede usar!!
 	return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
 		navigator.mozGetUserMedia || navigator.msGetUserMedia);
 };
 
-// A la carga de la página ...
-function init() {
-	var ancho = $("#camara").width;
-	var alto = $("#camara").height;
-	var video = $("#camara");
-	video.width = ancho;
-	video.height = alto;
+/*
+ * Esta función iniciliza lo necesario para la recepción de datos desde la cámara y su visualización.
+ */
+function iniciarRA() {
+	$("#RA").remove ();
+	if (!$('#camara').is(':empty'))
+		$("#camara").empty ();
+		
+	video = document.createElement('video');
+	video.width = 320;
+	video.height = 240;
 	video.loop = true;
-	video.volume = 0;
 	video.autoplay = true;
-	video.controls = true;
-				
+	
 	var getUserMedia = function(t, onsuccess, onerror) {
+
 		if (navigator.getUserMedia) {
 			return navigator.getUserMedia(t, onsuccess, onerror);
 		} else if (navigator.webkitGetUserMedia) {
@@ -53,53 +66,66 @@ function init() {
 	// Comprobación vital para el funcionamiento !!
 	if (hasGetUserMedia()) {
 		
-		var divContain = $("#camara");
+		var divContain = document.getElementById('camara');
 	
-		var canvas = $("#divContain");
-		canvas.width = ancho;
-		canvas.height = alto;
-		
-		var videoCanvas = $("#divContain");
-		videoCanvas.width = video.width;
-		videoCanvas.height = video.width*3/4;
+		canvas = document.createElement('canvas');
+		canvas.width = 320;
+		canvas.height = 240;
+						
+		videoCanvas = document.createElement('canvas');
+		videoCanvas.width = 320;
+		videoCanvas.height = 240;
 				
-		var ctx = document.getElementById("divContain").getContext('2d');
+		ctx = canvas.getContext('2d');
 		ctx.font = "24px URW Gothic L, Arial, Sans-serif";
 				
-		var raster = new NyARRgbRaster_Canvas2D(canvas);
-		var param = new FLARParam(320,240);
+		raster = new NyARRgbRaster_Canvas2D(canvas);
+		param = new FLARParam(320,240);
 				
-		var resultMat = new NyARTransMatResult();
+		resultMat = new NyARTransMatResult();
 				
-		var detector = new FLARMultiIdMarkerDetector(param, 120);
+		detector = new FLARMultiIdMarkerDetector(param, 120);
 		detector.setContinueMode(true);
 				
-		var tmp = new Float32Array(16);
+		tmp = new Float32Array(16);
 				
-		var renderer = new THREE.WebGLRenderer({ preserveDrawingBuffer: true });
+		renderer = new THREE.WebGLRenderer({ preserveDrawingBuffer: true });
 		renderer.setSize(ancho, alto);
 				
 		var glCanvas = renderer.domElement;
 		var s = glCanvas.style;
-		divContain.append($(glCanvas));
-				
+		divContain.appendChild(glCanvas);
+	} else {
+		alert('ERROR: La funcion getUserMedia() (necesaria para el uso de la webcam) no esta soportada por su navegador !!');
+	}
+	initSceneRA ();
+}
+
+/*
+ *	Esta inicializa la escena que se rendizará en la Realidad Aumentada
+ */
+function initSceneRA () {
+		// Cargamos la escena de Three js
 		var scene = new THREE.Scene();
+		
+		// Creamos las cámaras necesarias
 		var camera = new THREE.Camera();
-		var camera2 = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000);
-		 scene.add(camera);
-					
-		var lightAmbient = new THREE.AmbientLight(0x000000);
+		var camera2 = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
+		scene.add(camera);
+		
+		// Damos un punto de luz direccional y una luz ambiental a la escena.
+		var lightAmbient = new THREE.AmbientLight(0xA100FF);
 		scene.add(lightAmbient);
 				   
 		var focoLuz = new THREE.PointLight (0xFFFFFF);
 		focoLuz.position.x = 0;
 		focoLuz.position.y = 0;
 		focoLuz.position.z = 0;
-					
+		
 		param.copyCameraMatrix(tmp, 10, 10000);
 		camera.projectionMatrix.setFromArray(tmp);
 					
-		/*Crear plano de la camara*/
+		/* Crear plano de la camara */
 		var videoTex = new THREE.Texture(videoCanvas);
 		var plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 0),
 					new THREE.MeshBasicMaterial({map: videoTex})
@@ -112,21 +138,10 @@ function init() {
 					
 		videoScene.add(plane);
 		videoScene.add(videoCam);
-				
-		var times = [];
-		var markers = {};
+
+		// Inicia el proceso de la detección de Markers
 		var lastTime = 0;
-				   
-		
-		var cube = new THREE.Mesh( new THREE.CubeGeometry(50,50,50),
-			new THREE.MeshLambertMaterial({color:0x0000FF, side:THREE.DoubleSide}));
-			
-		var cubeDer = new THREE.Mesh( new THREE.CubeGeometry(50, 50, 50),
-			new THREE.MeshLambertMaterial({color:0xFF0000, side:THREE.DoubleSide}));
-			
-		var cubeIzq = new THREE.Mesh( new THREE.CubeGeometry(50, 50, 50),
-			new THREE.MeshLambertMaterial({color:0x00FF00, side:THREE.DoubleSide}));
-			
+				   	
 		setInterval(function(){
 			if (video.ended) video.play();
 			if (video.paused) return;
@@ -137,15 +152,14 @@ function init() {
 			if (video.currentTime == lastTime) return;
 					  
 			lastTime = video.currentTime;
-			
-			videoCanvas.getContext('2d').drawImage(video,0,0);
-			ctx.drawImage(videoCanvas, 0,0,ancho,alto);
-			
-			var dt = new Date().getTime();
+			try {
+				videoCanvas.getContext('2d').drawImage(video,0,0);
+			} catch (e) { }
+			ctx.drawImage(videoCanvas, 0,0, 320, 240);
 			canvas.changed = true;
 			videoTex.needsUpdate = true;
 		
-			var t = new Date();
+			// Para cada markers que se detecte en la cámara web
 			var detected = detector.detectMarkerLite(raster, threshold);
 			for (var idx = 0; idx<detected; idx++) {
 				var id = detector.getIdMarkerData(idx);
@@ -166,8 +180,8 @@ function init() {
 				markers[currId].age = 0;
 				markers[currId].transform = Object.asCopy(resultMat);
 			}
-				
-		
+			
+			
 			for (var i in markers) {
 				var r = markers[i];
 				if (r.age > 6) {
@@ -176,34 +190,19 @@ function init() {
 				}
 				r.age++;
 			}
+			// Añadimos el modelo cargado desde COLLADA a la escena anteriormente creada y la cuadramos con el marcador
 			for (var i in markers) {
 				var m = markers[i];
 				if (!m.model) {
+					
 					m.model = new THREE.Object3D();
-					cube.castShadow = false;
-					cube.receiveShadow = false;
-					
-					cubeDer.castShadow = false;
-					cubeDer.receiveShadow = false;
-					
-					cubeIzq.castShadow = false;
-					cubeIzq.receiveShadow = false;
 					
 					m.model.matrixAutoUpdate = false;
-					
-					cubeDer.position.x = 60;
-					cubeDer.position.z = 30;
-					
-					cubeIzq.position.x = -60;
-					cubeIzq.position.z = 30;
-					
-					m.model.add(cube);
-					m.model.add(cubeDer);
-					m.model.add(cubeIzq);
+					m.model.add (modelo);
 					
 					m.model.add(focoLuz);   
 					scene.add(m.model);
-					animate();
+					
 				}
 						
 				copyMatrix(m.transform, tmp);
@@ -215,44 +214,50 @@ function init() {
 			renderer.clear();
 			renderer.render(videoScene, videoCam);
 			renderer.render(scene, camera);
-		}, 15);
-		
-		
-		var ultimoTiempo = Date.now();
-		function animate() {
-			var delta = (Date.now() - ultimoTiempo) / 1500;
-			if (delta > 0) {
-				/* Aquí se realiza la rotación del cubo */
-				cube.rotation.y += toRadianes(45) * delta;
-				cube.rotation.x += toRadianes(45) * delta;
-
-				cubeDer.rotation.y += toRadianes(45) * delta;
-				cubeDer.rotation.x += toRadianes(45) * delta;
-
-				cubeIzq.rotation.y += toRadianes(45) * delta;
-				cubeIzq.rotation.x += toRadianes(45) * delta;				
-			}
-			ultimoTiempo = Date.now();
-			renderer.render(scene, camera);			
-			requestAnimationFrame(animate);
-		}	
-		
-		function toRadianes(angulo) {
-			return angulo * Math.PI / 180;
-		}
-					
-		var radius = 600;
-		var theta = 0;	
-		var duration = 1000;
-		var keyframes = 15, interpolation = duration / keyframes;
-		var lastKeyframe = 0, currentKeyframe = 0;
-		
-	} else {
-		alert('ERROR: La funcion getUserMedia() (necesaria para el uso de la webcam) no esta soportada por su navegador !!');
-	}	
+		}, 100);
 }
-			
-				
+
+var modeloBeber, modeloComer, modeloNoche;
+function iniciarModelos () {
+	cargador.options.convertUpAxis = true;
+	
+	cargador.load('3dmodels/bicchiere_di_vetro.dae',
+		function(collada){
+			modeloBeber = collada.scene;
+			modeloBeber.scale.set(40,40,40);
+			modeloBeber.position.set(0,2,0);
+		});
+
+	cargador.load('3dmodels/coltelloY.dae',
+		function(collada){
+			modeloComer = collada.scene;
+			modeloComer.scale.set(30,30,30);
+			modeloComer.position.set(0,2,-2);
+		});
+
+	cargador.load('3dmodels/bolaDiscoteca.dae',
+		function(collada){
+			modeloNoche = collada.scene;
+			modeloNoche.scale.set(100,100,100);
+			modeloNoche.position.set(0,2,0);
+		});
+}
+
+/*
+ *	Esta función carga un modelo 3D realizado en Collada
+ */
+function cargarModelo () {
+
+	if (tipoLocal == "beber") {
+		modelo = modeloBeber;
+	} else if (tipoLocal == "comer") {
+		modelo = modeloComer;
+	} else if (tipoLocal == "noche") {
+		modelo = modeloNoche;
+	} else {
+		alert ("Aviso: para ejecutar la Realidad Aumentada es necesario elegir un tipo de Local a buscar");
+	}
+}					
 			
 THREE.Matrix4.prototype.setFromArray = function(m) {
     return this.set(
@@ -264,21 +269,21 @@ THREE.Matrix4.prototype.setFromArray = function(m) {
 };
 			
 function copyMatrix(mat, cm) {
-		cm[0] = mat.m00;
-		cm[1] = -mat.m10;
-		cm[2] = mat.m20;
-		cm[3] = 0;
-		cm[4] = mat.m01;
-		cm[5] = -mat.m11;
-		cm[6] = mat.m21;
-		cm[7] = 0;
-		cm[8] = -mat.m02;
-		cm[9] = mat.m12;
-		cm[10] = -mat.m22;
-		cm[11] = 0;
-		cm[12] = mat.m03;
-		cm[13] = -mat.m13;
-		cm[14] = mat.m23;
-		cm[15] = 1;
+	cm[0] = mat.m00;
+	cm[1] = -mat.m10;
+	cm[2] = mat.m20;
+	cm[3] = 0;
+	cm[4] = mat.m01;
+	cm[5] = -mat.m11;
+	cm[6] = mat.m21;
+	cm[7] = 0;
+	cm[8] = -mat.m02;
+	cm[9] = mat.m12;
+	cm[10] = -mat.m22;
+	cm[11] = 0;
+	cm[12] = mat.m03;
+	cm[13] = -mat.m13;
+	cm[14] = mat.m23;
+	cm[15] = 1;
 }
 			  
